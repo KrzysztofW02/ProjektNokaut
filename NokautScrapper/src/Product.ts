@@ -1,0 +1,7 @@
+interface Product{
+    title: string;
+    offerFrom: string;
+    price: string;
+    image: string;
+    url: string;
+}

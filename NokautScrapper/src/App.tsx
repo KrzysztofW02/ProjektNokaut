@@ -1,10 +1,18 @@
 import { useState } from 'react'
+import './App.css'
+import GetProductsList from './WebScrapper'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+
+  let ProductData: Array<Product> = [];
+
+  GetProductsList("hulajnoga elektryczna").then((data) => {
+    ProductData = data
+    console.log(ProductData);
+  });
 
   return (
     <>
@@ -31,5 +39,4 @@ function App() {
     </>
   )
 }
-
 export default App
