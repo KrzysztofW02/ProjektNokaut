@@ -17,7 +17,7 @@ export async function GetProductsList(productToSearch: string) {
     const selector = cheerio.load(response.data);
     const products: Array<Product> = [];
 
-    selector(".Title>a").each((i, el) => {
+    selector(".Title>a").each((_i, el) => {
         const prod: Product = {
             title: selector(el).text(),
             offerFrom: "",
