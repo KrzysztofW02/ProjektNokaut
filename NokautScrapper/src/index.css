@@ -68,5 +68,7 @@ button:focus-visible {
 }
 
 .container-fluid select{
-margin-left: 100px;
+
+position: absolute;
+right: 5%;
   }
