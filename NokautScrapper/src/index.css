@@ -66,3 +66,7 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.container-fluid select{
+margin-left: 100px;
+  }

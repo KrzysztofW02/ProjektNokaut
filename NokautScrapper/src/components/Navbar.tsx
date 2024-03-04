@@ -14,6 +14,13 @@ export default function Navbar() {
           <button className="btn btn-outline-light" type="submit">
             Szukaj
           </button>
+
+          <select>
+          <option selected >Sortuj produkty</option>
+          <option>Od najtańszego</option>
+          <option>Od najdroższego</option>
+          </select>
+          
         </div>
       </div>
     </nav>
