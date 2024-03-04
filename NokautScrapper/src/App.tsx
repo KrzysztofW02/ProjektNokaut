@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import { GetProductsList } from "./WebScrapper";
+import { GetProductsList } from "./WebScrapper/WebScrapper";
 import Navbar from "./components/Navbar";
 
 function App() {
