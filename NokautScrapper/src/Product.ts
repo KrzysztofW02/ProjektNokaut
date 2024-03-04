@@ -3,5 +3,5 @@ interface Product{
     offerFrom: string;
     price: string;
     image: string;
-    url: string;
+    sellerUrl: string;
 }

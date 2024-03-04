@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import GetProductsList from "./WebScrapper";
+import { GetProductsList } from "./WebScrapper";
 import Navbar from "./components/Navbar";
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
 
   let ProductData: Array<Product> = [];
 
-  GetProductsList("hulajnoga elektryczna").then((data) => {
+  GetProductsList("").then((data) => {
     ProductData = data;
     console.log(ProductData);
   });
