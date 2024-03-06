@@ -1,6 +1,6 @@
 import Dropdown from "react-bootstrap/Dropdown";
 
-export default function Navbar() {
+function Navbar() {
   return (
     <nav className="navbar navbar-dark bg-dark fixed-top">
       <div className="container-fluid">
@@ -36,3 +36,5 @@ export default function Navbar() {
     </nav>
   );
 }
+
+export default Navbar;
