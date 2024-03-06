@@ -6,9 +6,10 @@ import Navbar from "./components/Navbar";
 function App() {
   const [count, setCount] = useState(0);
 
+
   let ProductData: Array<Product> = [];
 
-  GetProductsList("").then((data) => {
+  GetProductsList("hulajnoga").then((data) => {
     ProductData = data;
     console.log(ProductData);
   });
