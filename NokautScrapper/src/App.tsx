@@ -19,7 +19,8 @@ function App() {
       <div>
         <Navbar />
       </div>
-      <div >
+
+      <div className="mt-5">
         <Grid />
       </div>
     </>

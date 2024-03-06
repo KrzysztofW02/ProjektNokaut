@@ -7,16 +7,15 @@ function Navbar() {
         <a className="navbar-brand col-1 row-2" href="#home">
           Wyszukiwarka
         </a>
-        
-          <div className="d-flex mx-auto row-2 col-4 ">
-            <input
-              className="form-control me-2"
-              type="text"
-              placeholder="Czego szukasz?"
-            />
-            <button className="btn btn-outline-light col-2" type="submit">
-              Szukaj
-            </button>
+        <div className="d-flex mx-auto row-2" style={{ minWidth: "35%" }}>
+          <input
+            className="form-control me-2 w-100"
+            type="text"
+            placeholder="Czego szukasz?"
+          />
+          <button className="btn btn-outline-light " type="submit">
+            Szukaj
+          </button>
         </div>
         //** przycisk sortowania */
         <Dropdown>
