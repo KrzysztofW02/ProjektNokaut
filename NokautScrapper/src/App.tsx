@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import { GetProductsList } from "./WebScrapper/WebScrapper";
 import Navbar from "./components/Navbar";
+import Grid from "./components/Grid";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -19,10 +20,9 @@ function App() {
       <div>
         <Navbar />
       </div>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+
+      <div className="mt-5">
+        <Grid />
       </div>
     </>
   );

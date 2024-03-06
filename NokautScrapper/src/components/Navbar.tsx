@@ -1,36 +1,40 @@
 import Dropdown from "react-bootstrap/Dropdown";
 
-export default function Navbar() {
+
+function Navbar() {
   return (
     <nav className="navbar navbar-dark bg-dark fixed-top">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#home">
-          Home
+        <a className="navbar-brand col-1 row-2" href="#home">
+          Wyszukiwarka
         </a>
-        <div className="d-flex mx-auto">
+        <div className="d-flex mx-auto row-2" style={{ minWidth: "35%" }}>
           <input
-            className="form-control me-2"
+            className="form-control me-2 w-100"
             type="text"
             placeholder="Czego szukasz?"
           />
-          <button className="btn btn-outline-light" type="submit">
+          <button className="btn btn-outline-light " type="submit">
             Szukaj
           </button>
         </div>
-
+        //** przycisk sortowania */
         <Dropdown>
-          <Dropdown.Toggle variant="success" id="dropdown-basic">
-            Dropdown Button
+          <Dropdown.Toggle
+            className="btn btn-outline-light row-2"
+            variant="secondary"
+            id="dropdown-basic"
+          >
+            Sortowanie
           </Dropdown.Toggle>
-
           <Dropdown.Menu>
-            <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-            <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-            <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+            <Dropdown.Item href="#/action-1">Cena od najwyższej</Dropdown.Item>
+            <Dropdown.Item href="#/action-2">Cena od najniższej</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
-        
       </div>
     </nav>
   );
 }
+
+export default Navbar;
