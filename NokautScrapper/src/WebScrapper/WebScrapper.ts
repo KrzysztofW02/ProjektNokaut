@@ -3,12 +3,14 @@ import * as cheerio from "cheerio";
 
 export async function GetProductsList(productToSearch: string) {
     const databaseProducts = await checkDatabaseForProduct(productToSearch);
-    const yesterday = new Date();
-    yesterday.setDate(yesterday.getDate() - 1);
 
-    if (databaseProducts.products.length > 0 || databaseProducts.LastUpdate > yesterday) {
-        console.log("Data from database");
-        return databaseProducts.products;
+    if (databaseProducts !== null && databaseProducts.products.length > 0) {
+        const yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+        if(new Date(databaseProducts.LastUpdate) > yesterday) {
+            console.log("Data from database");
+            return databaseProducts.products;
+        }
     }
 
     const products = await scrappProducts(productToSearch) || [];
@@ -42,6 +44,7 @@ async function scrappProducts(productToSearch: string) {
 
     }
     const selector = cheerio.load(response.data);
+
     const products: Array<Product> = [];
 
     selector(".Title>a").each((_i, el) => {
@@ -67,9 +70,36 @@ async function scrappProducts(productToSearch: string) {
         products[i].image = selector(el).attr('src') || " ";
     });
 
-    selector(".Title a").each((i, el) => {
-        products[i].sellerUrl = selector(el).attr('href') || "";
+    const promises: any[] = [];
+    selector(".Title a").each(async (i, el) => {
+        if(selector(el).attr('href')?.includes("www.nokaut.pl")) {
+            promises.push(
+            getRedirectedUrl(selector(el).attr('href') || "").then(url => {
+                products[i].sellerUrl = url;
+                })
+            );
+        }
+        else{
+            products[i].sellerUrl = selector(el).attr('href') || "";
+        }
     });
+
+    await Promise.all(promises);
+    console.log(products);
 
     return products;
 }
+async function getRedirectedUrl(nokautRedirectWebsite: string) {
+    let response;
+    try {
+        response = await axios.get(nokautRedirectWebsite);
+    }
+    catch (error) {
+        console.log("Failed to fetch data");
+        return "";
+
+    }
+    const selector = cheerio.load(response.data);
+    return selector(".PromoOffer a").attr('href') || " ";
+}
+

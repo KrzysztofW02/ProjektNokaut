@@ -10,7 +10,7 @@ function App() {
 
   let ProductData: Array<Product> = [];
 
-  GetProductsList("hulajnoga").then((data) => {
+  GetProductsList("hulajnoga elektryczna").then((data) => {
     ProductData = data;
     console.log(ProductData);
   });

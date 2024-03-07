@@ -7,7 +7,7 @@ describe('GetProductsList', () => {
         const products = await GetProductsList('hulajnoga');
 
         expect(products.length).toBeGreaterThan(0);
-        products.forEach(element => {
+        products.forEach((element: { title: string; offerFrom: string; price: string; image: string; sellerUrl: string; }) => {
             expect(element.title).toBeTruthy();
             expect(element.offerFrom).toBeTruthy();
             expect(element.price).toBeTruthy();
