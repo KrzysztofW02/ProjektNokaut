@@ -14,6 +14,7 @@
     "axios-retry": "^4.0.0",
     "bootstrap": "^5.3.3",
     "cheerio": "^1.0.0-rc.12",
+    "cors": "^2.8.5",
     "mongod": "^2.0.0",
     "mongodb": "^6.4.0",
     "react": "^18.2.0",
