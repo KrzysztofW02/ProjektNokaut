@@ -1,6 +1,17 @@
+import React, { useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 
-function Navbar() {
+interface NavbarProps {
+  onSearch: (searchText: string) => void;
+}
+
+function Navbar({ onSearch }: NavbarProps) {
+  const [searchText, setSearchText] = useState("");
+
+  const handleSearch = () => {
+    onSearch(searchText);
+  };
+
   return (
     <nav className="navbar navbar-dark bg-dark fixed-top">
       <div className="container-fluid">
@@ -12,12 +23,18 @@ function Navbar() {
             className="form-control me-2 w-100"
             type="text"
             placeholder="Czego szukasz?"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
           />
-          <button className="btn btn-outline-light " type="submit">
+          <button
+            className="btn btn-outline-light "
+            type="button"
+            onClick={handleSearch}
+          >
             Szukaj
           </button>
         </div>
-        //* przycisk sortowania */
+        {/* przycisk sortowania */}
         <Dropdown>
           <Dropdown.Toggle
             className="btn btn-outline-light row-2"
