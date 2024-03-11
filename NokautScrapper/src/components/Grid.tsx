@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import axios from "axios";
 import "./Navbar";
 import { GetProductsList } from "../WebScrapper/WebScrapper";
+import { Container, Row, Col, Card } from "react-bootstrap";
 
 interface Product {
   title: string;
@@ -30,16 +28,16 @@ function Grid({ productToSearch }: { productToSearch: string }) {
           <Row>
             {products.map((product, index) => (
               <Col key={index} xs={6} md={4}>
-                <div>
-                  <br></br>
-                  <br></br>
-                  <a href={product.sellerUrl}>
-                    <p>{product.title}</p>
-                  </a>
-                  {/*<p>{product.offerFrom}</p>*/}
-                  <img src={product.image} alt="" />
-                  <p>{product.price}</p>
-                </div>
+                <Card>
+                  <Card.Link href={product.sellerUrl}>
+                    <Card.Img variant="top" src={product.image} alt="" />
+                    <Card.Body>
+                      <Card.Title>{product.title}</Card.Title>
+                      <Card.Text>{product.price}</Card.Text>
+                    </Card.Body>
+                  </Card.Link>
+                </Card>
+                <br></br>
               </Col>
             ))}
           </Row>
