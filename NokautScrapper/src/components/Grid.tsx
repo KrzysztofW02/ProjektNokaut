@@ -13,11 +13,8 @@ interface Product {
   sellerUrl: string;
 }
 
-function Grid() {
+function Grid({ productToSearch }: { productToSearch: string }) {
   const [products, setProducts] = useState<Product[]>([]);
-  const [productToSearch, setProductToSearch] = useState(
-    "hulajnoga elektryczna"
-  );
 
   useEffect(() => {
     axios
@@ -30,10 +27,6 @@ function Grid() {
         setProducts(response.data.products);
       });
   }, [productToSearch]);
-
-  const handleSearch = (searchText: string) => {
-    setProductToSearch(searchText);
-  };
 
   return (
     <div className="MarginGridTop">

@@ -40,8 +40,8 @@ function Navbar({ onSearch }: NavbarProps) {
             className="btn btn-outline-light row-2"
             variant="secondary"
             id="dropdown-basic"
-          >
-            Sortowanie
+          > 
+          Sortowanie
           </Dropdown.Toggle>
           <Dropdown.Menu>
             <Dropdown.Item href="#/action-1">Cena od najwyższej</Dropdown.Item>
