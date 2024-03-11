@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Navbar from "./Navbar";
+import "./Navbar";
 import { GetProductsList } from "../WebScrapper/WebScrapper";
 import { Container, Row, Col, Card } from "react-bootstrap";
 
