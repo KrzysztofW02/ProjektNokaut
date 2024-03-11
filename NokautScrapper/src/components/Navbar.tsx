@@ -13,6 +13,12 @@ function Navbar({ onSearch }: NavbarProps) {
     onSearch(searchText);
   };
 
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      onSearch(searchText);
+    }
+  };
+
   return (
     <nav className="navbar navbar-dark bg-dark fixed-top">
       <div className="container-fluid">
@@ -26,6 +32,7 @@ function Navbar({ onSearch }: NavbarProps) {
             placeholder="Czego szukasz?"
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
+            onKeyPress={handleKeyPress}
           />
           <button
             className="btn btn-outline-light "
@@ -41,8 +48,8 @@ function Navbar({ onSearch }: NavbarProps) {
             className="btn btn-outline-light row-2"
             variant="secondary"
             id="dropdown-basic"
-          > 
-          Sortowanie
+          >
+            Sortowanie
           </Dropdown.Toggle>
           <Dropdown.Menu>
             <Dropdown.Item href="#/action-1">Cena od najwyższej</Dropdown.Item>

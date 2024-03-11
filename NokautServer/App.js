@@ -18,6 +18,8 @@ async function saveToDatabase(products, productName) {
         productName,
         products,
     };
+    console.log("Saving to database")
+    console.log(productDocument);
 
     await collection.insertOne(productDocument);
 
@@ -44,7 +46,6 @@ app.get("/api/products", async (req, res) => {
         console.error(e);
     }
     res.json(products);
-    console.log(products);
 });
 
 app.post("/api/products", (req, res) => {

@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
 import "./Navbar";
+import { GetProductsList } from "../WebScrapper/WebScrapper";
 
 interface Product {
   title: string;
@@ -13,27 +14,14 @@ interface Product {
   sellerUrl: string;
 }
 
-function Grid() {
+function Grid({ productToSearch }: { productToSearch: string }) {
   const [products, setProducts] = useState<Product[]>([]);
-  const [productToSearch, setProductToSearch] = useState(
-    "hulajnoga elektryczna"
-  );
 
   useEffect(() => {
-    axios
-      .get(
-        `http://localhost:3001/api/products?productName=${encodeURIComponent(
-          productToSearch
-        )}`
-      )
-      .then((response) => {
-        setProducts(response.data.products);
-      });
+    GetProductsList(productToSearch).then((data) => {
+      setProducts(data);
+    });
   }, [productToSearch]);
-
-  const handleSearch = (searchText: string) => {
-    setProductToSearch(searchText);
-  };
 
   return (
     <div className="MarginGridTop">
