@@ -17,6 +17,7 @@ export async function GetProductsList(productToSearch: string) {
 
     saveToDatabase(products, productToSearch);
 
+    console.log(products);
     return products;
 }
 

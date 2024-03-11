@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
 import Navbar from "./Navbar";
+import { GetProductsList } from "../WebScrapper/WebScrapper";
 
 interface Product {
   title: string;
@@ -17,15 +18,9 @@ function Grid({ productToSearch }: { productToSearch: string }) {
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    axios
-      .get(
-        `http://localhost:3001/api/products?productName=${encodeURIComponent(
-          productToSearch
-        )}`
-      )
-      .then((response) => {
-        setProducts(response.data.products);
-      });
+    GetProductsList(productToSearch).then((data) => {
+      setProducts(data);
+    });
   }, [productToSearch]);
 
   return (
