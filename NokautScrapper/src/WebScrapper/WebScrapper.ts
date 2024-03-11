@@ -21,8 +21,7 @@ export async function GetProductsList(productToSearch: string) {
 }
 
 async function saveToDatabase(products: Array<Product>, name: string) {
-    const response = await axios.post("http://localhost:3001/api/products", { productName: name, products: products });
-    console.log(response, products);
+    await axios.post("http://localhost:3001/api/products", { productName: name, products: products });
 }
 
 async function checkDatabaseForProduct(productToSearch: string) {
@@ -68,7 +67,11 @@ async function scrappProducts(productToSearch: string) {
 
     selector(".ProductItem img").each((i, el) => {
         products[i].image = selector(el).attr('src') || " ";
+        if (products[i].image == " "){
+            products[i].image = selector(el).attr('data-src') || "";
+        }
     });
+
 
     const promises: any[] = [];
     selector(".Title a").each(async (i, el) => {
@@ -85,7 +88,6 @@ async function scrappProducts(productToSearch: string) {
     });
 
     await Promise.all(promises);
-    console.log(products);
 
     return products;
 }
