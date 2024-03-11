@@ -1,14 +1,16 @@
 import axios from "axios";
 import * as cheerio from "cheerio";
+import { NumericType } from "mongodb";
 
-export async function GetProductsList(productToSearch: string) {
+export async function GetProductsList(productToSearch: string, page: number = 1): Promise<Array<Product>> {
+    productToSearch = productToSearch+"--"+page;
     const databaseProducts = await checkDatabaseForProduct(productToSearch);
 
+    // If the product is in the database and it was updated in the last 24 hours, return the products from the database
     if (databaseProducts !== null && databaseProducts.products.length > 0) {
         const yesterday = new Date();
         yesterday.setDate(yesterday.getDate() - 1);
         if(new Date(databaseProducts.LastUpdate) > yesterday) {
-            console.log("Data from database");
             return databaseProducts.products;
         }
     }
@@ -17,7 +19,6 @@ export async function GetProductsList(productToSearch: string) {
 
     saveToDatabase(products, productToSearch);
 
-    console.log(products);
     return products;
 }
 
@@ -30,7 +31,7 @@ async function checkDatabaseForProduct(productToSearch: string) {
     return response.data;
 }
 
-async function scrappProducts(productToSearch: string) {
+async function scrappProducts(productToSearch: string, page: number = 1) {
     let response;
     const url = "https://www.nokaut.pl/produkt:" + productToSearch + ".html";
     url.replace(" ", "%20");
