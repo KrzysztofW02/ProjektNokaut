@@ -1,8 +1,11 @@
 const MongoClient = require("mongodb").MongoClient;
+const NodeCache = require("node-cache");
 const express = require("express");
+const cors = require("cors");
+
 const app = express();
 const port = 3001;
-const cors = require("cors");
+const cache = new NodeCache();
 
 // Connection URL
 const url = "mongodb+srv://Rafal:Nokaut@nokaut.mxtx026.mongodb.net/?retryWrites=true&w=majority&appName=Nokaut";
@@ -19,7 +22,6 @@ async function saveToDatabase(products, productName) {
         products,
     };
     console.log("Saving to database")
-    console.log(productDocument);
 
     await collection.insertOne(productDocument);
 
@@ -40,12 +42,23 @@ app.use(express.json());
 app.get("/api/products", async (req, res) => {
     const productName = req.query.productName;
     let products = [];
-    try {
-        products = await collection.findOne({ productName: productName });
-    } catch (e) {
+
+    const cachedData = cache.get(productName);
+
+    if (cachedData) {
+        res.json(cachedData);
+        console.log("Data from cache");
+    }else{
+        try {
+            console.log("Data from database");
+            products = await collection.findOne({ productName: productName });
+            cache.set(productName, products);
+            res.json(products);
+        } catch (e) {
         console.error(e);
+        }
+
     }
-    res.json(products);
 });
 
 app.post("/api/products", (req, res) => {
