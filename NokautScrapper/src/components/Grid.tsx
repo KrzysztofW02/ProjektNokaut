@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import "./Navbar";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/Card";
+import "react-bootstrap";
 import { GetProductsList } from "../WebScrapper/WebScrapper";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import "./Navbar";
+import "./customcss/custom.css"
+
 
 interface Product {
   title: string;
@@ -20,31 +24,30 @@ function Grid({ productToSearch }: { productToSearch: string }) {
       setProducts(data);
     });
   }, [productToSearch]);
-
+ 
   return (
-    <div className="MarginGridTop">
-      <Container>
+    <div className="MarginGridTop MainContainerSize">
+      <div>
         {products.length > 0 ? (
-          <Row>
+          <Row style={{marginBottom: '15px'}}>
             {products.map((product, index) => (
-              <Col key={index} xs={6} md={4}>
+              <Col key={index} xs={4} md={4} style={{marginBottom: '30px'}}>
                 <Card>
-                  <Card.Link href={product.sellerUrl}>
+                  <Card.Link style={{textDecoration: 'none', color:'grey'}}href={product.sellerUrl}>
                     <Card.Img variant="top" src={product.image} alt="" />
                     <Card.Body>
-                      <Card.Title>{product.title}</Card.Title>
-                      <Card.Text>{product.price}</Card.Text>
+                      <Card.Title style={{fontSize: '15px', textDecoration: 'none'}}>{product.title}</Card.Title>
+                      <Card.Text style={{fontSize: '20px', textDecoration: 'none'}}>{product.price}</Card.Text>
                     </Card.Body>
                   </Card.Link>
                 </Card>
-                <br></br>
               </Col>
             ))}
           </Row>
         ) : (
-          <p>Loading...</p>
+          <p className="Loading">Loading...</p>
         )}
-      </Container>
+      </div>
     </div>
   );
 }

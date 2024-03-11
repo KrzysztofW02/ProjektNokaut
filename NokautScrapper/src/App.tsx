@@ -15,7 +15,8 @@ function App() {
     console.log(ProductData);
   });
 */
-  const [productData, setProductData] = useState<Product[]>([]);
+ //TODO: XD
+  const [, setProductData] = useState<Product[]>([]);
 
   const handleSearch = (searchText: string) => {
     setProductToSearch(searchText);
