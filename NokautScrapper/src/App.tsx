@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar";
 import Grid from "./components/Grid";
 import { useState } from "react";
 
-function App() {
+function App() {  
   const [productToSearch, setProductToSearch] = useState(
     "hulajnoga elektryczna"
   );
@@ -15,7 +15,6 @@ function App() {
     console.log(ProductData);
   });
 */
- //TODO: XD
   const [, setProductData] = useState<Product[]>([]);
 
   const handleSearch = (searchText: string) => {

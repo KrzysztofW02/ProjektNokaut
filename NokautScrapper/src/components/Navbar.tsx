@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import "./Grid"
+import "../Sorting";
+import { sortDataByAscending, sortDataByDescending } from "../Sorting";
 
 interface NavbarProps {
   onSearch: (searchText: string) => void;
@@ -32,7 +34,7 @@ function Navbar({ onSearch }: NavbarProps) {
             placeholder="Czego szukasz?"
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
-            onKeyPress={handleKeyPress}
+            onKeyDown={handleKeyPress}
           />
           <button
             className="btn btn-outline-light "
@@ -52,13 +54,15 @@ function Navbar({ onSearch }: NavbarProps) {
             Sortowanie
           </Dropdown.Toggle>
           <Dropdown.Menu>
-            <Dropdown.Item href="#/action-1">Cena od najwyższej</Dropdown.Item>
-            <Dropdown.Item href="#/action-2">Cena od najniższej</Dropdown.Item>
+            <Dropdown.Item /*onClick={sortDataByDescending}*/>Cena od najwyższej</Dropdown.Item>
+            <Dropdown.Item /*onClick={sortDataByAscending}*/>Cena od najniższej</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </div>
     </nav>
   );
 }
+
+//TODO: w pliku Sorting.tsx są funkcje sortowania, które z założenia działają, ale nie na przyciskach :D 
 
 export default Navbar;
