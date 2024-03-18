@@ -4,6 +4,7 @@ import "react-bootstrap";
 import { GetProductsList } from "../WebScrapper/WebScrapper";
 import "./Navbar";
 import "./customcss/custom.css"
+import { useProducts } from "../hooks/useProducts";
 interface Product {
   title: string;
   offerFrom: string;
@@ -13,20 +14,20 @@ interface Product {
 }
 
 function Grid({ productToSearch }: { productToSearch: string }) {
-  const [products, setProducts] = useState<Product[]>([]);
+  const {data, setData} = useProducts();
 
   useEffect(() => {
     GetProductsList(productToSearch).then((data) => {
-      setProducts(data);
+      setData(data);
     });
   }, [productToSearch]);
 
   return (
     <div className="MarginGridTop MainContainerSize">
       <div>
-        {products.length > 0 ? (
+        {data.length > 0 ? (
           <Row style={{marginBottom: '15px'}}>
-            {products.map((product, index) => (
+            {data.map((product, index) => (
               <Col key={index} xs={4} md={4} style={{marginBottom: '30px'}}>
                 <Card>
                   <Card.Link style={{textDecoration: 'none', color:'black'}}href={product.sellerUrl}>

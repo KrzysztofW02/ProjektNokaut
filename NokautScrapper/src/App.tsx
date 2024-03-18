@@ -3,6 +3,7 @@ import { GetProductsList } from "./WebScrapper/WebScrapper";
 import Navbar from "./components/Navbar";
 import Grid from "./components/Grid";
 import { useState } from "react";
+import { ProductsProvider } from "./contexts/productsProvider";
 
 function App() {  
   const [productToSearch, setProductToSearch] = useState(
@@ -26,7 +27,7 @@ function App() {
   };
 
   return (
-    <>
+    <ProductsProvider>
       <div>
         <Navbar onSearch={handleSearch} />
       </div>
@@ -34,7 +35,7 @@ function App() {
       <div className="mt-5">
         <Grid productToSearch={productToSearch} />
       </div>
-    </>
+    </ProductsProvider>
   );
 }
 export default App;

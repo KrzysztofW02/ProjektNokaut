@@ -3,6 +3,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import "./Grid"
 import "../Sorting";
 import { sortDataByAscending, sortDataByDescending } from "../Sorting";
+import { useProducts } from "../hooks/useProducts";
 
 interface NavbarProps {
   onSearch: (searchText: string) => void;
@@ -10,6 +11,7 @@ interface NavbarProps {
 
 function Navbar({ onSearch }: NavbarProps) {
   const [searchText, setSearchText] = useState("");
+  const { data } = useProducts();
 
   const handleSearch = () => {
     onSearch(searchText);
@@ -20,6 +22,15 @@ function Navbar({ onSearch }: NavbarProps) {
       onSearch(searchText);
     }
   };
+
+const handleSort = (desc: boolean) => {
+  let result = [];
+  if (!desc) {
+    sortDataByAscending(data);
+  } else {
+    sortDataByDescending(data);
+  }
+}
 
   return (
     <nav className="navbar navbar-dark bg-dark fixed-top">
@@ -54,15 +65,13 @@ function Navbar({ onSearch }: NavbarProps) {
             Sortowanie
           </Dropdown.Toggle>
           <Dropdown.Menu>
-            <Dropdown.Item /*onClick={sortDataByDescending}*/>Cena od najwyższej</Dropdown.Item>
-            <Dropdown.Item /*onClick={sortDataByAscending}*/>Cena od najniższej</Dropdown.Item>
+            <Dropdown.Item onClick={handleSort}>Cena od najwyższej</Dropdown.Item>
+            <Dropdown.Item onClick={handleSort}>Cena od najniższej</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </div>
     </nav>
   );
 }
-
-//TODO: w pliku Sorting.tsx są funkcje sortowania, które z założenia działają, ale nie na przyciskach :D 
 
 export default Navbar;
