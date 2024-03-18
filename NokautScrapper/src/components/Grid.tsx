@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Row, Col, Card, Button } from "react-bootstrap";
+import { Row, Col, Card, Dropdown } from "react-bootstrap";
 import "react-bootstrap";
 import { GetProductsList } from "../WebScrapper/WebScrapper";
 import "./Navbar";
@@ -69,7 +69,7 @@ function Grid({ productToSearch }: { productToSearch: string }) {
                 </Col>
               ))}
             </Row>
-            <Button onClick={fetchNextPage}>Pokaż więcej</Button>
+            <Dropdown onClick={fetchNextPage} className="btnloadmore btn btn-outline-dark">Pokaż więcej</Dropdown>
           </>
         ) : (
           <p className="Loading">Loading...</p>
