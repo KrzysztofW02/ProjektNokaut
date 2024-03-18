@@ -47,15 +47,20 @@ function Navbar({ onSearch }: NavbarProps) {
         {/* przycisk sortowania */}
         <Dropdown>
           <Dropdown.Toggle
+            style={{ backgroundColor: "rgba(0 0 0 0.2)" }}
             className="btn btn-outline-light row-2"
-            variant="secondary"
+            variant=""
             id="dropdown-basic"
           >
             Sortowanie
           </Dropdown.Toggle>
           <Dropdown.Menu>
-            <Dropdown.Item /*onClick={sortDataByDescending}*/>Cena od najwyższej</Dropdown.Item>
-            <Dropdown.Item /*onClick={sortDataByAscending}*/>Cena od najniższej</Dropdown.Item>
+            <Dropdown.Item /*onClick={sortDataByDescending}*/>
+              Cena od najwyższej
+            </Dropdown.Item>
+            <Dropdown.Item /*onClick={sortDataByAscending}*/>
+              Cena od najniższej
+            </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </div>
