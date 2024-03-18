@@ -26,7 +26,7 @@ function Grid({ productToSearch }: { productToSearch: string }) {
 
   useEffect(() => {
     GetProductsList(productToSearch).then((data) => {
-      setProducts(data);
+      changeProducts(data);
     });
   }, [productToSearch]);
 

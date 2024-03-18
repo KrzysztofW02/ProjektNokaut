@@ -6,9 +6,13 @@ import { sortDataByAscending, sortDataByDescending } from "../Sorting";
 
 interface NavbarProps {
   onSearch: (searchText: string) => void;
+  products: Product[];
+  changeProducts: (newProducts: any) => void;
+
 }
 
-function Navbar({ onSearch }: NavbarProps) {
+function Navbar({products, onSearch, changeProducts }: NavbarProps) {
+
   const [searchText, setSearchText] = useState("");
 
   const handleSearch = () => {
@@ -55,10 +59,10 @@ function Navbar({ onSearch }: NavbarProps) {
             Sortowanie
           </Dropdown.Toggle>
           <Dropdown.Menu>
-            <Dropdown.Item /*onClick={sortDataByDescending}*/>
+            <Dropdown.Item onClick={(e) => sortDataByDescending(products, changeProducts)}>
               Cena od najwyższej
             </Dropdown.Item>
-            <Dropdown.Item /*onClick={sortDataByAscending}*/>
+            <Dropdown.Item onClick={(e) => sortDataByAscending(products, changeProducts)}>
               Cena od najniższej
             </Dropdown.Item>
           </Dropdown.Menu>

@@ -15,7 +15,11 @@ function App() {
     console.log(ProductData);
   });
 */
-  const [, setProductData] = useState<Product[]>([]);
+  const [products, setProductData] = useState<Product[]>([]);
+
+  const handleOrderChange = (newProducts) => {
+    setProductData(newProducts);
+  };
 
   const handleSearch = (searchText: string) => {
     setProductToSearch(searchText);
@@ -28,11 +32,11 @@ function App() {
   return (
     <>
       <div>
-        <Navbar onSearch={handleSearch} />
+        <Navbar products={products} onSearch={handleSearch} changeProducts = {handleOrderChange}/>
       </div>
 
       <div className="mt-5">
-        <Grid productToSearch={productToSearch} />
+        <Grid products={products} productToSearch={productToSearch} changeProducts = {handleOrderChange}/>
       </div>
     </>
   );
