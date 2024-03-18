@@ -48,8 +48,7 @@ function Grid({ productToSearch }: { productToSearch: string }) {
                         <Card.Title
                           style={{
                             fontSize: "15px",
-                            textDecoration: "none",
-                            textWrap: "nowrap",
+                            textDecoration: "none"
                           }}
                         >
                           {product.title}
