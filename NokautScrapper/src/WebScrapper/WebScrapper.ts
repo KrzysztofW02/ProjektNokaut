@@ -64,7 +64,10 @@ async function scrappProducts(productToSearch: string, page: number = 1) {
     });
 
     selector(".Price").each((i, el) => {
-        products[i].price = selector(el).text();
+        if(products[i] !== undefined)
+        {
+            products[i].price = selector(el).text() || "";
+        }
     });
 
     selector(".ProductItem img").each((i, el) => {
