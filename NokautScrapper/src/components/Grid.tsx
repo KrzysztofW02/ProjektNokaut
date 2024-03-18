@@ -12,14 +12,13 @@ interface Product {
   sellerUrl: string;
 }
 
-function Grid({ productToSearch }: { productToSearch: string }) {
-  const [products, setProducts] = useState<Product[]>([]);
+function Grid({products, productToSearch, changeProducts }: {products:Product[], productToSearch: string, changeProducts: (newProducts: any) => void}) {
   const [currentPage, setCurrentPage] = useState(1);
 
   const fetchNextPage = () => {
     const nextPage = currentPage + 1;
     GetProductsList(productToSearch, nextPage).then((data) => {
-      setProducts([...products, ...data]);
+      changeProducts([...products, ...data]);
       setCurrentPage(nextPage);
     });
   };
