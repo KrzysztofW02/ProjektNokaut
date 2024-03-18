@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
-import "./Grid"
+import "./Grid";
 import "../Sorting";
 import { sortDataByAscending, sortDataByDescending } from "../Sorting";
 
@@ -68,6 +68,6 @@ function Navbar({ onSearch }: NavbarProps) {
   );
 }
 
-//TODO: w pliku Sorting.tsx są funkcje sortowania, które z założenia działają, ale nie na przyciskach :D 
+//TODO: w pliku Sorting.tsx są funkcje sortowania, które z założenia działają, ale nie na przyciskach :D
 
 export default Navbar;
