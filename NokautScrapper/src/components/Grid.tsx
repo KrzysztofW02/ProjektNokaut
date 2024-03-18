@@ -28,8 +28,8 @@ function Grid({ productToSearch }: { productToSearch: string }) {
           <Row style={{marginBottom: '15px'}}>
             {products.map((product, index) => (
               <Col key={index} xs={4} md={4} style={{marginBottom: '30px'}}>
-                <Card>
-                  <Card.Link style={{textDecoration: 'none', color:'black'}}href={product.sellerUrl}>
+                <Card className="Card">
+                  <Card.Link  style={{textDecoration: 'none', color:'black'}}href={product.sellerUrl}>
                     <Card.Img variant="top" src={product.image} alt="" />
                     <Card.Body>
                       <Card.Title style={{fontSize: '15px', textDecoration: 'none'}}>{product.title}</Card.Title>
