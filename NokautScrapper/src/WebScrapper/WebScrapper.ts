@@ -1,9 +1,9 @@
 import axios from "axios";
 import * as cheerio from "cheerio";
-import { NumericType } from "mongodb";
 
 export async function GetProductsList(productToSearch: string, page: number = 1): Promise<Array<Product>> {
     productToSearch = productToSearch+"--"+page;
+
     const databaseProducts = await checkDatabaseForProduct(productToSearch);
 
     // If the product is in the database and it was updated in the last 24 hours, return the products from the database
@@ -31,7 +31,7 @@ async function checkDatabaseForProduct(productToSearch: string) {
     return response.data;
 }
 
-async function scrappProducts(productToSearch: string, page: number = 1) {
+async function scrappProducts(productToSearch: string) {
     let response;
     const url = "https://www.nokaut.pl/produkt:" + productToSearch + ".html";
     url.replace(" ", "%20");

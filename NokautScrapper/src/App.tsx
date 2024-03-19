@@ -17,7 +17,7 @@ function App() {
 */
   const [products, setProductData] = useState<Product[]>([]);
 
-  const handleOrderChange = (newProducts) => {
+  const handleOrderChange = (newProducts: Product[]) => {
     setProductData(newProducts);
   };
 
@@ -25,7 +25,6 @@ function App() {
     setProductToSearch(searchText);
     GetProductsList(searchText).then((data) => {
       setProductData(data);
-      console.log(data);
     });
   };
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Row, Col, Card, Dropdown } from "react-bootstrap";
 import "react-bootstrap";
 import { GetProductsList } from "../WebScrapper/WebScrapper";
