@@ -23,11 +23,11 @@ function Grid({products, productToSearch, changeProducts }: {products:Product[],
     });
   };
 
-  useEffect(() => {
-    GetProductsList(productToSearch).then((data) => {
-      changeProducts(data);
-    });
-  }, [productToSearch]);
+    useEffect(() => {
+      GetProductsList(productToSearch).then((data) => {
+        changeProducts(data);
+      });
+    }, [productToSearch, changeProducts]);
 
   return (
     <div className="MarginGridTop MainContainerSize">

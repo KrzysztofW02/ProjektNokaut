@@ -72,6 +72,6 @@ function Navbar({products, onSearch, changeProducts }: NavbarProps) {
   );
 }
 
-//TODO: w pliku Sorting.tsx są funkcje sortowania, które z założenia działają, ale nie na przyciskach :D
+
 
 export default Navbar;
