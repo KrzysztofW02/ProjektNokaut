@@ -8,11 +8,9 @@ interface NavbarProps {
   onSearch: (searchText: string) => void;
   products: Product[];
   changeProducts: (newProducts: any) => void;
-
 }
 
-function Navbar({products, onSearch, changeProducts }: NavbarProps) {
-
+function Navbar({ products, onSearch, changeProducts }: NavbarProps) {
   const [searchText, setSearchText] = useState("");
 
   const handleSearch = () => {
@@ -59,10 +57,14 @@ function Navbar({products, onSearch, changeProducts }: NavbarProps) {
             Sortowanie
           </Dropdown.Toggle>
           <Dropdown.Menu>
-            <Dropdown.Item onClick={(_e) => sortDataByDescending(products, changeProducts)}>
+            <Dropdown.Item
+              onClick={(_e) => sortDataByDescending(products, changeProducts)}
+            >
               Cena od najwyższej
             </Dropdown.Item>
-            <Dropdown.Item onClick={(_e) => sortDataByAscending(products, changeProducts)}>
+            <Dropdown.Item
+              onClick={(_e) => sortDataByAscending(products, changeProducts)}
+            >
               Cena od najniższej
             </Dropdown.Item>
           </Dropdown.Menu>
