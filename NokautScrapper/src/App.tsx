@@ -6,15 +6,9 @@ import { useState } from "react";
 
 function App() {
   const [productToSearch, setProductToSearch] = useState(
-    "hulajnoga elektryczna"
+    ""
   );
-  //let ProductData: Array<Product> = [];
-
-  /*GetProductsList("hulajnoga elektryczna").then((data) => {
-    ProductData = data;
-    console.log(ProductData);
-  });
-*/
+  
   const [products, setProductData] = useState<Product[]>([]);
 
   const handleOrderChange = (newProducts: Product[]) => {

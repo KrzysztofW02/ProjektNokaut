@@ -11,7 +11,6 @@ interface Product {
   image: string;
   sellerUrl: string;
 }
-
 function Grid({
   products,
   productToSearch,
@@ -83,7 +82,7 @@ function Grid({
             </Dropdown>
           </>
         ) : (
-          <p className="Loading">Loading...</p>
+          <p className="Loading">Nie znaleziono produktu</p>
         )}
       </div>
     </div>

@@ -74,6 +74,4 @@ function Navbar({ products, onSearch, changeProducts }: NavbarProps) {
   );
 }
 
-
-
 export default Navbar;
