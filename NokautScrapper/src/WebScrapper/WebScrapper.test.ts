@@ -1,26 +1,33 @@
-import {describe, expect} from '@jest/globals';
-import { GetProductsList } from './WebScrapper.ts';
+import { describe, expect } from "@jest/globals";
+import { GetProductsList } from "./WebScrapper.ts";
 
-describe('GetProductsList', () => {
-    it('returns products list for a valid product', async () => {
+describe("GetProductsList", () => {
+  it("returns products list for a valid product", async () => {
+    const products = await GetProductsList("hulajnoga");
 
-        const products = await GetProductsList('hulajnoga');
+    expect(products.length).toBeGreaterThan(0);
+    products.forEach(
+      (element: {
+        title: string;
+        offerFrom: string;
+        price: string;
+        image: string;
+        sellerUrl: string;
+      }) => {
+        expect(element.title).toBeTruthy();
+        expect(element.offerFrom).toBeTruthy();
+        expect(element.price).toBeTruthy();
+        expect(element.image).toBeTruthy();
+        expect(element.sellerUrl).toBeTruthy();
+      }
+    );
+  });
 
-        expect(products.length).toBeGreaterThan(0);
-        products.forEach((element: { title: string; offerFrom: string; price: string; image: string; sellerUrl: string; }) => {
-            expect(element.title).toBeTruthy();
-            expect(element.offerFrom).toBeTruthy();
-            expect(element.price).toBeTruthy();
-            expect(element.image).toBeTruthy();
-            expect(element.sellerUrl).toBeTruthy();
-        });
-    });
+  it("returns an empty array for an invalid product", async () => {
+    // Mock axios.get to throw an error
 
-    it('returns an empty array for an invalid product', async () => {
-        // Mock axios.get to throw an error
+    const products = await GetProductsList("");
 
-        const products = await GetProductsList('');
-
-        expect(products).toEqual([]);
-    });
+    expect(products).toEqual([]);
+  });
 });

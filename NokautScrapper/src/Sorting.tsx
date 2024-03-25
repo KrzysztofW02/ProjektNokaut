@@ -1,4 +1,3 @@
-//TODO: Sortowanie nie działa na funkcji onClick, która jest używana na przycisku
 
 export function sortDataByAscending(Products: Product[], changeProducts:(newProducts: any) => void): Product[] {
 

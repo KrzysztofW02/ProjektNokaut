@@ -12,7 +12,15 @@ interface Product {
   sellerUrl: string;
 }
 
-function Grid({products, productToSearch, changeProducts }: {products:Product[], productToSearch: string, changeProducts: (newProducts: any) => void}) {
+function Grid({
+  products,
+  productToSearch,
+  changeProducts,
+}: {
+  products: Product[];
+  productToSearch: string;
+  changeProducts: (newProducts: any) => void;
+}) {
   const [currentPage, setCurrentPage] = useState(1);
 
   const fetchNextPage = () => {
@@ -47,7 +55,7 @@ function Grid({products, productToSearch, changeProducts }: {products:Product[],
                         <Card.Title
                           style={{
                             fontSize: "15px",
-                            textDecoration: "none"
+                            textDecoration: "none",
                           }}
                         >
                           {product.title}
@@ -67,7 +75,12 @@ function Grid({products, productToSearch, changeProducts }: {products:Product[],
                 </Col>
               ))}
             </Row>
-            <Dropdown onClick={fetchNextPage} className="btnloadmore btn btn-outline-dark">Pokaż więcej</Dropdown>
+            <Dropdown
+              onClick={fetchNextPage}
+              className="btnloadmore btn btn-outline-dark"
+            >
+              Pokaż więcej
+            </Dropdown>
           </>
         ) : (
           <p className="Loading">Loading...</p>
