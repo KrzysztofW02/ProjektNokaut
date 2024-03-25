@@ -50,10 +50,10 @@ app.get("/api/products", async (req, res) => {
         console.log("Data from cache");
     }else{
         try {
-            console.log("Data from database");
-            products = await collection.findOne({ productName: productName });
-            cache.set(productName, products);
-            res.json(products);
+            console.log(productName);
+            products = await collection.find({ productName: productName }).limit(1).sort({LastUpdate: -1}).toArray();
+            cache.set(productName, products[0]);
+            res.json(products[0]);
         } catch (e) {
         console.error(e);
         }

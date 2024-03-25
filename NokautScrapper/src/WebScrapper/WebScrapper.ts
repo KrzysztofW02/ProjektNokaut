@@ -6,6 +6,7 @@ export async function GetProductsList(productToSearch: string, page: number = 1)
 
     const databaseProducts = await checkDatabaseForProduct(productToSearch);
 
+    console.log(databaseProducts);
     // If the product is in the database and it was updated in the last 24 hours, return the products from the database
     if (databaseProducts !== null && databaseProducts.products.length > 0) {
         const yesterday = new Date();
@@ -17,12 +18,15 @@ export async function GetProductsList(productToSearch: string, page: number = 1)
 
     const products = await scrappProducts(productToSearch) || [];
 
-    saveToDatabase(products, productToSearch);
+    await saveToDatabase(products, productToSearch);
 
     return products;
 }
 
 async function saveToDatabase(products: Array<Product>, name: string) {
+    if(products.length === 0) {
+        return;
+    }
     await axios.post("http://localhost:3001/api/products", { productName: name, products: products });
 }
 
