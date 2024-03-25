@@ -27,7 +27,7 @@ function Grid({products, productToSearch, changeProducts }: {products:Product[],
       GetProductsList(productToSearch).then((data) => {
         changeProducts(data);
       });
-    }, [productToSearch, changeProducts]);
+    }, [productToSearch]);
 
   return (
     <div className="MarginGridTop MainContainerSize">
