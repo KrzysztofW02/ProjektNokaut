@@ -11,7 +11,7 @@ export async function GetProductsList(
 
   console.log(databaseProducts);
   // If the product is in the database and it was updated in the last 24 hours, return the products from the database
-  if (databaseProducts !== null && databaseProducts.products.length > 0) {
+  if (databaseProducts !== null && databaseProducts !== "" && databaseProducts.products.length > 0) {
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
     if (new Date(databaseProducts.LastUpdate) > yesterday) {
