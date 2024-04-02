@@ -1,5 +1,4 @@
-
-export function sortDataByAscending(Products: Product[], changeProducts:(newProducts: any) => void): Product[] {
+export function sortDataByAscending(Products:Product[], changeProducts:(newProducts: any) => void): Product[] {
   const SortedProducts = Products
     .filter((item) => item && typeof item.price === "string") // Filter out null or items without price
     .slice()

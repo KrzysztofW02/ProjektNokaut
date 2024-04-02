@@ -1,4 +1,4 @@
-interface Product {
+interface Product{
   title: string;
   offerFrom: string;
   price: string;
